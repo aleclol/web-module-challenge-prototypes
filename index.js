@@ -87,8 +87,8 @@ function Baby(name, age, favoriteToy) {
 // Allows the baby to inherit the person's methods:
 Baby.prototype = Object.create(Person.prototype);
 
-Baby.prototype.play = function play(favoriteToy) {
-  return `Playing with ${favoriteToy}`
+Baby.prototype.play = function play() {
+  return `Playing with ${this.favoriteToy}`;
 }
 
 
@@ -96,13 +96,13 @@ Baby.prototype.play = function play(favoriteToy) {
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. Window Binding: basically an error, we haven't given any context
-  2. Implicit Binding:
-  3. Explicit Binding: 
-    .call - 
-    .bind -
-    .apply -
-  4. New Binding:
+  1. Window/Global Binding: basically an error, we haven't given any context; default?
+  2. Implicit Binding: When "this" keyword references the object to the left of the dot.
+  3. Explicit Binding: Purposefully defining "this" using the following methods:
+    .call - Pass in arguments one-by-one, immediately invokes the function.
+    .bind - Pass in arguments one-by-one, returns a brand-new function to be invoked later.
+    .apply - Pass in the arguments as an array, immediately invokes the function.
+  4. New Binding: "this" describes the input to a constructor function.
 */
 
 ///////// END OF CHALLENGE /////////
