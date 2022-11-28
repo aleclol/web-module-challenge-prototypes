@@ -15,8 +15,21 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(attributes) {
+  this.name = attributes.name;
+  this.age = attributes.age;
+  this.stomach = [];
+  this.eat = function(food){
+    if(this.stomach.length <= 10){
+      this.stomach.push(food); 
+    }
+  }
+  this.poop = function(){
+    this.stomach = [];
+  }
+  this.toString = function(){
+    `${this.name}, ${this.age}`
+  }
 }
 
 
