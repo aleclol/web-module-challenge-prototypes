@@ -15,23 +15,26 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person(attributes) {
-  this.name = attributes.name;
-  this.age = attributes.age;
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
   this.stomach = [];
-  this.eat = function(food){
-    if(this.stomach.length <= 10){
-      this.stomach.push(food); 
-    }
-  }
-  this.poop = function(){
-    this.stomach = [];
-  }
-  this.toString = function(){
-    `${this.name}, ${this.age}`
-  }
 }
 
+Person.prototype.eat = function(food){
+  if(this.stomach.length <= 10){
+    this.stomach.push(food); 
+  }
+}
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+}
+
+//Person('neo', 20);
+//console.log(Person.name);
 
 /*
   TASK 2
@@ -49,10 +52,23 @@ function Person(attributes) {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, mpg) {
+  this.model = model;
+  this.milesPerGallon = mpg;
+  this.tank = 0;
+  this.odometer = 0;
 }
 
+Car.prototype.fill = function(gallons){
+  this.tank += gallons;
+}
+Car.prototype.drive = function(distance){
+  this.odometer += distance;
+  this.tank = tank - (mpg * distance);
+  if(this.tank === 0){
+    return `I ran out of fuel at ${this.odometer}.`
+  }
+}
 
 /*
   TASK 3
@@ -62,18 +78,31 @@ function Car() {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  // tell the baby who its parent is, which attributes to inherit:
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+
+// Allows the baby to inherit the person's methods:
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function play(favoriteToy) {
+  return `Playing with ${favoriteToy}`
+}
+
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window Binding: basically an error, we haven't given any context
+  2. Implicit Binding:
+  3. Explicit Binding: 
+    .call - 
+    .bind -
+    .apply -
+  4. New Binding:
 */
 
 ///////// END OF CHALLENGE /////////
